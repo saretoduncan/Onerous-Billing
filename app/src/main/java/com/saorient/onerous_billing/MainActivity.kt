@@ -3,6 +3,7 @@ package com.saorient.onerous_billing
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -11,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.saorient.onerous_billing.ui.composables.SplashScreen
+import com.saorient.onerous_billing.ui.navigation.Navigation
 import com.saorient.onerous_billing.ui.theme.Onerous_BillingTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +21,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             Onerous_BillingTheme {
                 // A surface container using the 'background' color from the theme
-              SplashScreen()
+                Surface(modifier = Modifier
+                    .background(MaterialTheme.colorScheme.background)
+                    .fillMaxSize()
+                ) {
+                    Navigation()
+                }
+
             }
         }
     }
@@ -34,6 +42,6 @@ fun Greeting(name: String) {
 @Composable
 fun DefaultPreview() {
     Onerous_BillingTheme {
-        SplashScreen()
+        Navigation()
     }
 }
