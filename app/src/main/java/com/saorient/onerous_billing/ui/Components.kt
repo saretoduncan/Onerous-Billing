@@ -1,30 +1,48 @@
 package com.saorient.onerous_billing.ui
 
+import android.graphics.Color
 import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.saorient.onerous_billing.ui.theme.Onerous_BillingTheme
+import java.time.format.TextStyle
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun TextEdit(modifier:Modifier= Modifier, label:String="") {
+    val keyboardController= LocalSoftwareKeyboardController.current
     var text by remember{mutableStateOf("")}
     OutlinedTextField(value = text, onValueChange = {
         text=it
-    }, label={Text(label)},modifier= modifier)
+    }, label={Text(label)},keyboardOptions= KeyboardOptions.Default.copy(
+        imeAction = ImeAction.Done
+    ),
+        keyboardActions= KeyboardActions(
+            onDone = {
+                keyboardController?.hide();
+            }
+        ),modifier= modifier)
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun PasswordTextEdit(modifier: Modifier= Modifier) {
+    val keyboardController= LocalSoftwareKeyboardController.current
     var password by rememberSaveable { mutableStateOf("") }
     var passwordVisible by rememberSaveable{ mutableStateOf(false) }
     OutlinedTextField(value = password,
@@ -32,6 +50,14 @@ fun PasswordTextEdit(modifier: Modifier= Modifier) {
         password=it
     },
         label = { Text(text = "password")},
+        keyboardOptions= KeyboardOptions.Default.copy(
+            imeAction = ImeAction.Done
+        ),
+        keyboardActions= KeyboardActions(
+            onDone = {
+                keyboardController?.hide();
+            }
+        ),
         visualTransformation = if(passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
         trailingIcon = {
             val image = if(passwordVisible){
@@ -47,9 +73,9 @@ fun PasswordTextEdit(modifier: Modifier= Modifier) {
 
 }
 @Composable
-fun SimpleButton(buttonText:String="", shape:Int= 0,colors: ButtonColors,modifier: Modifier= Modifier ) {
+fun SimpleButton(buttonText:String="", shape:Int= 0,colors: ButtonColors,modifier: Modifier= Modifier, textColor:androidx.compose.ui.graphics.Color) {
     Button(onClick = { /*TODO*/ },shape=CutCornerShape(shape),colors=colors, modifier = modifier) {
-        Text(text= buttonText)
+       Text(text = buttonText,style=androidx.compose.ui.text.TextStyle(color=textColor))
     }
 }
 
@@ -82,15 +108,16 @@ fun PasswordEditPreview() {
 }
 
 
-@Preview
+
+@Preview(showBackground = true)
 @Composable
 fun SimpleButtonPreview() {
     Onerous_BillingTheme {
         SimpleButton(buttonText = "login", shape = 10,
             colors=ButtonDefaults
-                .buttonColors(MaterialTheme.colorScheme.primaryContainer) )
+                .buttonColors(MaterialTheme.colorScheme.primaryContainer),textColor = MaterialTheme.colorScheme.onPrimaryContainer )
     }
-}@Preview
+}@Preview(showBackground = true)
 @Composable
 fun ElevateButtonPreview() {
     Onerous_BillingTheme {
