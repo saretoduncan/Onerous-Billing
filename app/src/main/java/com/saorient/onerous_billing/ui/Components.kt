@@ -2,6 +2,9 @@ package com.saorient.onerous_billing.ui
 
 import android.graphics.Color
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.BoxScopeInstance.align
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScopeInstance.align
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -11,6 +14,7 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
@@ -92,6 +96,15 @@ fun ElevatedButton(buttonText:String="",
 
     
 }
+
+@Composable
+fun AuthDivider(modifier: Modifier=Modifier) {
+    Row(modifier= modifier) {
+        Divider(color=MaterialTheme.colorScheme.onBackground, thickness = 2.dp)
+        Text(text = "Or")
+        Divider(color=MaterialTheme.colorScheme.onBackground, thickness = 2.dp)
+    }
+}
 @Preview(showBackground = true)
 @Composable
 fun TextEditPreview() {
@@ -99,6 +112,7 @@ fun TextEditPreview() {
        TextEdit( modifier = Modifier.background(MaterialTheme.colorScheme.background),label = "Name")
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun PasswordEditPreview() {
@@ -115,7 +129,8 @@ fun SimpleButtonPreview() {
     Onerous_BillingTheme {
         SimpleButton(buttonText = "login", shape = 10,
             colors=ButtonDefaults
-                .buttonColors(MaterialTheme.colorScheme.primaryContainer),textColor = MaterialTheme.colorScheme.onPrimaryContainer )
+                .buttonColors(MaterialTheme.colorScheme.primaryContainer),
+            textColor = MaterialTheme.colorScheme.onPrimaryContainer)
     }
 }@Preview(showBackground = true)
 @Composable
@@ -126,5 +141,15 @@ fun ElevateButtonPreview() {
                 .buttonColors(MaterialTheme.colorScheme.primaryContainer),
             buttonElevation = ButtonDefaults.buttonElevation(defaultElevation = 10.dp),
             modifier= Modifier.background(MaterialTheme.colorScheme.background))
+    }
+}
+@Preview(showBackground = true)
+@Composable
+fun AuthDividerPreview() {
+    Onerous_BillingTheme {
+        AuthDivider(modifier=Modifier
+            .background(MaterialTheme.colorScheme.background)
+
+            )
     }
 }

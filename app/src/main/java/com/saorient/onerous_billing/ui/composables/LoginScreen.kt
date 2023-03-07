@@ -55,7 +55,8 @@ fun LoginScreen(modifier:Modifier= Modifier) {
             SimpleButton(colors =ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primaryContainer),
             buttonText = "Login",
                 shape = 5,
-                modifier = Modifier.align(alignment = Alignment.CenterHorizontally)
+                modifier = Modifier
+                    .align(alignment = Alignment.CenterHorizontally)
                     .width(200.dp), textColor = MaterialTheme.colorScheme.onPrimaryContainer)
 
         }
@@ -63,6 +64,8 @@ fun LoginScreen(modifier:Modifier= Modifier) {
 
     }
 }
+
+
 
 @Composable
 fun loginIllustation():Int {
