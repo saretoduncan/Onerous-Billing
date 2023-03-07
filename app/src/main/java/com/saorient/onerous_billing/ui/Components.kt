@@ -2,9 +2,15 @@ package com.saorient.onerous_billing.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.saorient.onerous_billing.ui.theme.Onerous_BillingTheme
@@ -17,6 +23,29 @@ fun TextEdit(modifier:Modifier= Modifier, label:String="") {
     }, label={Text(label)},modifier= modifier)
 }
 
+@Composable
+fun PasswordTextEdit(modifier: Modifier= Modifier) {
+    var password by rememberSaveable { mutableStateOf("") }
+    var passwordVisible by rememberSaveable{ mutableStateOf(false) }
+    OutlinedTextField(value = password,
+        onValueChange ={
+        password=it
+    },
+        label = { Text(text = "password")},
+        visualTransformation = if(passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+        trailingIcon = {
+            val image = if(passwordVisible){
+                Icons.Filled.Visibility
+            }else Icons.Filled.VisibilityOff
+            val description = if (passwordVisible) "Hide Password" else "Show Password"
+            IconButton(onClick = { passwordVisible=!passwordVisible }) {
+                Icon(imageVector = image, description)
+            }
+        },
+        modifier= modifier
+    )
+
+}
 @Composable
 fun SimpleButton(buttonText:String="", shape:Int= 0,colors: ButtonColors,modifier: Modifier= Modifier ) {
     Button(onClick = { /*TODO*/ },shape=CutCornerShape(shape),colors=colors, modifier = modifier) {
@@ -41,9 +70,17 @@ fun ElevatedButton(buttonText:String="",
 @Composable
 fun TextEditPreview() {
     Onerous_BillingTheme {
-       TextEdit( modifier = Modifier.background(MaterialTheme.colorScheme.background),label = "password")
+       TextEdit( modifier = Modifier.background(MaterialTheme.colorScheme.background),label = "Name")
     }
 }
+@Preview(showBackground = true)
+@Composable
+fun PasswordEditPreview() {
+    Onerous_BillingTheme {
+      PasswordTextEdit(modifier= Modifier.background(MaterialTheme.colorScheme.background) )
+    }
+}
+
 
 @Preview
 @Composable
