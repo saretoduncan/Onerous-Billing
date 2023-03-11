@@ -13,15 +13,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.saorient.onerous_billing.R
 import com.saorient.onerous_billing.ui.*
+import com.saorient.onerous_billing.ui.navigation.Screen
 import com.saorient.onerous_billing.ui.theme.Onerous_BillingTheme
 import kotlinx.coroutines.runBlocking
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 
 @Composable
-fun LoginScreen(modifier:Modifier= Modifier) {
+fun LoginScreen(modifier:Modifier= Modifier, navController: NavController) {
     Box(modifier = Modifier
         .background(
             MaterialTheme.colorScheme.background
@@ -62,7 +65,10 @@ fun LoginScreen(modifier:Modifier= Modifier) {
                     .width(280.dp))
                 Spacer(modifier = Modifier.height(10.dp))
                 Box(modifier=Modifier.width(280.dp).align(alignment =Alignment.CenterHorizontally)) {
-                    Text(text = "forgot password?", color= MaterialTheme.colorScheme.onBackground, modifier= Modifier.align(alignment =Alignment.CenterEnd))
+                    Text(text = "forgot password?", color= MaterialTheme.colorScheme.onBackground,
+                        modifier= Modifier.align(alignment =Alignment.CenterEnd).clickable {
+                            navController.navigate(Screen.ForgotPassword.route)
+                        })
                 }
                 Spacer(modifier = Modifier.height(10.dp))
                 SimpleButton(colors =ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primaryContainer),
@@ -116,7 +122,8 @@ fun loginIllustation():Int {
 @Preview(showBackground = true)
 @Composable
 fun loginScreenPreview() {
+    val navController = rememberNavController()
     Onerous_BillingTheme {
-        LoginScreen()
+        LoginScreen(navController = navController)
     }
 }
