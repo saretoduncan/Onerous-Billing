@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -58,7 +59,8 @@ fun LoginScreen(modifier:Modifier= Modifier, navController: NavController) {
                 TextEdit(label = "Email", modifier = Modifier
                     .align(alignment = Alignment.CenterHorizontally)
                     .background(MaterialTheme.colorScheme.background)
-                    .width(280.dp))
+                    .width(280.dp),
+                keyboardType = KeyboardType.Email)
                 Spacer(modifier = Modifier.height(10.dp))
                 PasswordTextEdit(modifier= Modifier
                     .align(alignment = Alignment.CenterHorizontally)
