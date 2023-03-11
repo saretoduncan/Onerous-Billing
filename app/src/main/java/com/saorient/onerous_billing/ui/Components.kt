@@ -1,6 +1,7 @@
 package com.saorient.onerous_billing.ui
 
-import android.graphics.Color
+
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CutCornerShape
@@ -15,13 +16,17 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.saorient.onerous_billing.R
 import com.saorient.onerous_billing.ui.theme.Onerous_BillingTheme
 import java.time.format.TextStyle
 
@@ -86,11 +91,15 @@ fun SimpleButton(buttonText:String="", shape:Int= 0,colors: ButtonColors,modifie
 fun ElevatedButton(buttonText:String="",
                    shape: Int=0,
                    colors: ButtonColors,
-                   buttonElevation: ButtonElevation, modifier: Modifier) {
-    Button(onClick = { /*TODO*/ }, elevation= ButtonDefaults.buttonElevation(
-        defaultElevation = 10.dp
-    ), modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
-        Text(text=buttonText)
+                   buttonElevation: ButtonElevation,
+
+                   modifier: Modifier) {
+    Button(onClick = { /*TODO*/ },
+        elevation= buttonElevation,
+        shape = CutCornerShape(shape),
+        colors = colors, modifier = modifier) {
+
+        Text(text=buttonText, color=MaterialTheme.colorScheme.onBackground)
     }
 
     
@@ -150,9 +159,10 @@ fun ElevateButtonPreview() {
     Onerous_BillingTheme {
         ElevatedButton(buttonText = "login", shape = 10,
             colors=ButtonDefaults
-                .buttonColors(MaterialTheme.colorScheme.primaryContainer),
+                .buttonColors(MaterialTheme.colorScheme.background),
             buttonElevation = ButtonDefaults.buttonElevation(defaultElevation = 10.dp),
-            modifier= Modifier.background(MaterialTheme.colorScheme.background))
+            modifier= Modifier.background(MaterialTheme.colorScheme.background),
+           )
     }
 }
 @Preview(showBackground = true)

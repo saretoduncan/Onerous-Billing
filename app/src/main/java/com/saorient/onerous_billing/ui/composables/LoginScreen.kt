@@ -14,10 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.saorient.onerous_billing.R
-import com.saorient.onerous_billing.ui.AuthDivider
-import com.saorient.onerous_billing.ui.PasswordTextEdit
-import com.saorient.onerous_billing.ui.SimpleButton
-import com.saorient.onerous_billing.ui.TextEdit
+import com.saorient.onerous_billing.ui.*
 import com.saorient.onerous_billing.ui.theme.Onerous_BillingTheme
 import kotlinx.coroutines.runBlocking
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
@@ -30,46 +27,76 @@ fun LoginScreen(modifier:Modifier= Modifier) {
             MaterialTheme.colorScheme.background
         )
         .fillMaxSize()
-        .padding(horizontal = 20.dp)){
-        Column(modifier= modifier
-            .fillMaxWidth()
-            .verticalScroll(rememberScrollState(), true)) {
-            Spacer(modifier = Modifier.height(50.dp))
-            Image(painter = painterResource(id = loginIllustation()), contentDescription ="app logo",
-                modifier= Modifier
-                    .align(alignment = Alignment.CenterHorizontally)
-                    .size(200.dp))
-            Spacer( modifier=Modifier.height(10.dp))
-            Text(
-                text = "Login",
-                style = MaterialTheme.typography.displaySmall,
-                fontWeight = FontWeight.Bold,
-                color= MaterialTheme.colorScheme.onBackground,
-                modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
+        .padding(horizontal = 20.dp)
+    ){
+        Column(
+            modifier= Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState(), true)
+            ) {
 
-            )
-            Spacer(modifier = Modifier.height(10.dp))
+            Column(modifier= modifier.fillMaxWidth()) {
+                Spacer(modifier = Modifier.height(50.dp))
+                Image(painter = painterResource(id = loginIllustation()), contentDescription ="app logo",
+                    modifier= Modifier
+                        .align(alignment = Alignment.CenterHorizontally)
+                        .size(200.dp))
+                Spacer( modifier=Modifier.height(10.dp))
+                Text(
+                    text = "Login",
+                    style = MaterialTheme.typography.displaySmall,
+                    fontWeight = FontWeight.Bold,
+                    color= MaterialTheme.colorScheme.onBackground,
+                    modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
 
-            TextEdit(label = "Email", modifier = Modifier
-                .align(alignment = Alignment.CenterHorizontally)
-                .background(MaterialTheme.colorScheme.background)
-                .width(280.dp))
-            Spacer(modifier = Modifier.height(10.dp))
-            PasswordTextEdit(modifier= Modifier
-                .align(alignment = Alignment.CenterHorizontally)
-                .width(280.dp))
-            Spacer(modifier = Modifier.height(10.dp))
-            SimpleButton(colors =ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primaryContainer),
-            buttonText = "Login",
-                shape = 5,
-                modifier = Modifier
-                    .width(280.dp)
+                    )
+                Spacer(modifier = Modifier.height(10.dp))
+
+                TextEdit(label = "Email", modifier = Modifier
                     .align(alignment = Alignment.CenterHorizontally)
+                    .background(MaterialTheme.colorScheme.background)
+                    .width(280.dp))
+                Spacer(modifier = Modifier.height(10.dp))
+                PasswordTextEdit(modifier= Modifier
+                    .align(alignment = Alignment.CenterHorizontally)
+                    .width(280.dp))
+                Spacer(modifier = Modifier.height(10.dp))
+                SimpleButton(colors =ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primaryContainer),
+                    buttonText = "Login",
+                    shape = 5,
+                    modifier = Modifier
+                        .width(280.dp)
+                        .align(alignment = Alignment.CenterHorizontally)
                     , textColor = MaterialTheme.colorScheme.onPrimaryContainer
-            )
-            Spacer(modifier = Modifier.height(10.dp))
-            AuthDivider(modifier= Modifier.width(280.dp).align(alignment = Alignment.CenterHorizontally))
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+                AuthDivider(modifier= Modifier
+                    .width(280.dp)
+                    .align(alignment = Alignment.CenterHorizontally))
+                Spacer(modifier = Modifier.height(10.dp))
+                ElevatedButton(colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.background) ,
+                    buttonElevation = ButtonDefaults.buttonElevation(defaultElevation = 2.dp),
+                    shape = 5,
+                    buttonText = "continue with google",
+
+                    modifier = Modifier
+                        .align(alignment = Alignment.CenterHorizontally)
+                        .width(280.dp))
+            }
+
+            Spacer(modifier = Modifier.weight(1f))
+            Row(modifier= modifier
+                .padding(bottom = 20.dp)
+                .fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+
+                ) {
+                Text(text = "Don't have an account yet?", color=MaterialTheme.colorScheme.onBackground)
+                Spacer(modifier = Modifier.width(2.dp))
+                Text(text = "Register",color= MaterialTheme.colorScheme.tertiary)
+            }
         }
+
 
 
     }
