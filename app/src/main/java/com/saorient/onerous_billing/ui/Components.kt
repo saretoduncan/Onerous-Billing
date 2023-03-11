@@ -131,7 +131,7 @@ fun AuthDivider(modifier: Modifier=Modifier) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBar(navController: NavController) {
+fun TopBar(navController: NavController, title:String) {
     TopAppBar(title = {
         Box(modifier =Modifier.fillMaxWidth() )
         {
@@ -147,7 +147,7 @@ fun TopBar(navController: NavController) {
             )
           
             Text(
-                text = "Reset Password", modifier=Modifier.align(alignment = Alignment.Center),
+                text = title, modifier=Modifier.align(alignment = Alignment.Center),
                 color=MaterialTheme.colorScheme.onBackground
 
             )

@@ -18,7 +18,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.saorient.onerous_billing.R
+import com.saorient.onerous_billing.ui.SimpleButton
+import com.saorient.onerous_billing.ui.TextEdit
 import com.saorient.onerous_billing.ui.TopBar
 import com.saorient.onerous_billing.ui.theme.Onerous_BillingTheme
 
@@ -29,7 +32,7 @@ import com.saorient.onerous_billing.ui.theme.Onerous_BillingTheme
 @Composable
 fun ForgotPasswordScreen(modifier: Modifier = Modifier, navController: NavController) {
     Scaffold(topBar = {
-        TopBar(navController = navController)
+        TopBar(navController = navController, title = "Reset Password")
 
                       },
         content = {
@@ -43,7 +46,17 @@ fun ForgotPasswordScreen(modifier: Modifier = Modifier, navController: NavContro
                         .width(280.dp)
                         .align(alignment = Alignment.CenterHorizontally),
                     )
+                Spacer(modifier =Modifier.height(100.dp))
+                TextEdit(label="Email", modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .width(280.dp))
+                Spacer(modifier=Modifier.height(10.dp))
+                SimpleButton(buttonText ="Send OTP" ,colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primaryContainer),
+                    textColor =MaterialTheme.colorScheme.onPrimaryContainer,
+                    shape = 5,
+                    modifier = Modifier.align(Alignment.CenterHorizontally).width(280.dp))
             }
+
         }
    )
 }
@@ -52,6 +65,7 @@ fun ForgotPasswordScreen(modifier: Modifier = Modifier, navController: NavContro
 fun ForgotPasswordScreenPreview() {
 
     Onerous_BillingTheme {
-//        ForgotPasswordScreen( navController)
+        val navController = rememberNavController()
+        ForgotPasswordScreen( navController= navController)
     }
 }
