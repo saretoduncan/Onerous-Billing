@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.saorient.onerous_billing.R
+import com.saorient.onerous_billing.ui.TopBar
 import com.saorient.onerous_billing.ui.theme.Onerous_BillingTheme
 
 
@@ -28,32 +29,13 @@ import com.saorient.onerous_billing.ui.theme.Onerous_BillingTheme
 @Composable
 fun ForgotPasswordScreen(modifier: Modifier = Modifier, navController: NavController) {
     Scaffold(topBar = {
-        TopAppBar(title = {
-            Box(modifier =Modifier.fillMaxWidth() )
-            {
-                Icon(
-                    imageVector = Icons.Default.ChevronLeft,
-                    contentDescription = stringResource(
-                        R.string.go_back
-                    ),
-                    tint = MaterialTheme.colorScheme.onBackground,
-                    modifier = Modifier.size(28.dp)
-                )
-                Text(
-                    text = "Reset Password", modifier.align(alignment = Alignment.Center),
-                    color=MaterialTheme.colorScheme.onBackground
-
-                )
-
-
-            }
-            })
+        TopBar(navController = navController)
 
                       },
         content = {
             Column(modifier= Modifier
                 .fillMaxWidth()
-                .verticalScroll(rememberScrollState(), enabled=true)) {
+                .verticalScroll(rememberScrollState(), enabled = true)) {
                 Spacer(modifier =Modifier.height(100.dp))
                 Text(text="Please enter your registered email below to receive password reset OTP",
                     textAlign = TextAlign.Center,

@@ -3,11 +3,13 @@ package com.saorient.onerous_billing.ui
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
@@ -26,6 +28,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.saorient.onerous_billing.R
 import com.saorient.onerous_billing.ui.theme.Onerous_BillingTheme
 import java.time.format.TextStyle
@@ -126,6 +129,37 @@ fun AuthDivider(modifier: Modifier=Modifier) {
         }
     }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopBar(navController: NavController) {
+    TopAppBar(title = {
+        Box(modifier =Modifier.fillMaxWidth() )
+        {
+            Icon(
+                imageVector = Icons.Default.ChevronLeft,
+                contentDescription = stringResource(
+                    R.string.go_back
+                ),
+                tint = MaterialTheme.colorScheme.onBackground,
+                modifier = Modifier
+                    .size(28.dp)
+                    .clickable { navController.popBackStack()}
+            )
+          
+            Text(
+                text = "Reset Password", modifier=Modifier.align(alignment = Alignment.Center),
+                color=MaterialTheme.colorScheme.onBackground
+
+            )
+
+
+        }
+    })
+
+}
+fun backPress(): Unit {
+
+}
 @Preview(showBackground = true)
 @Composable
 fun TextEditPreview() {
