@@ -1,6 +1,8 @@
 package com.saorient.onerous_billing.ui
 
 
+import android.content.Context
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -24,6 +26,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,13 +38,17 @@ import java.time.format.TextStyle
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun TextEdit(modifier:Modifier= Modifier, label:String="") {
+fun TextEdit(modifier:Modifier= Modifier,
+             label:String="",
+             keyboardType: KeyboardType=KeyboardType.Text) {
     val keyboardController= LocalSoftwareKeyboardController.current
     var text by remember{mutableStateOf("")}
-    OutlinedTextField(value = text, onValueChange = {
+    OutlinedTextField(value = text,onValueChange = {
         text=it
-    }, label={Text(label)},keyboardOptions= KeyboardOptions.Default.copy(
-        imeAction = ImeAction.Done
+    }, label={Text(label)},
+        keyboardOptions= KeyboardOptions.Default.copy(
+            imeAction = ImeAction.Done,
+            keyboardType = keyboardType
     ),
         keyboardActions= KeyboardActions(
             onDone = {
@@ -83,9 +90,17 @@ fun PasswordTextEdit(modifier: Modifier= Modifier) {
     )
 
 }
+fun makeToast(context: Context){
+    Toast.makeText(context, "click button", Toast.LENGTH_LONG).show()
+}
 @Composable
-fun SimpleButton(buttonText:String="", shape:Int= 0,colors: ButtonColors,modifier: Modifier= Modifier, textColor:androidx.compose.ui.graphics.Color) {
-    Button(onClick = { /*TODO*/ },shape=CutCornerShape(shape),colors=colors, modifier = modifier) {
+fun SimpleButton(buttonText:String="",
+                 shape:Int= 0,
+                 colors: ButtonColors,
+                 modifier: Modifier= Modifier,
+                 textColor:androidx.compose.ui.graphics.Color,
+                 buttonClick:()->Unit) {
+    Button(onClick = buttonClick,shape=CutCornerShape(shape),colors=colors, modifier = modifier) {
        Text(text = buttonText,style=androidx.compose.ui.text.TextStyle(color=textColor))
     }
 }
@@ -131,7 +146,7 @@ fun AuthDivider(modifier: Modifier=Modifier) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBar(navController: NavController, title:String) {
+fun TopBar(navController: NavController, title:Int) {
     TopAppBar(title = {
         Box(modifier =Modifier.fillMaxWidth() )
         {
@@ -143,11 +158,11 @@ fun TopBar(navController: NavController, title:String) {
                 tint = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier
                     .size(28.dp)
-                    .clickable { navController.popBackStack()}
+                    .clickable { navController.popBackStack() }
             )
           
             Text(
-                text = title, modifier=Modifier.align(alignment = Alignment.Center),
+                 stringResource(id = title), modifier=Modifier.align(alignment = Alignment.Center),
                 color=MaterialTheme.colorScheme.onBackground
 
             )
@@ -157,9 +172,7 @@ fun TopBar(navController: NavController, title:String) {
     })
 
 }
-fun backPress(): Unit {
 
-}
 @Preview(showBackground = true)
 @Composable
 fun TextEditPreview() {
@@ -185,7 +198,7 @@ fun SimpleButtonPreview() {
         SimpleButton(buttonText = "login", shape = 10,
             colors=ButtonDefaults
                 .buttonColors(MaterialTheme.colorScheme.primaryContainer),
-            textColor = MaterialTheme.colorScheme.onPrimaryContainer, modifier = Modifier.width(200.dp))
+            textColor = MaterialTheme.colorScheme.onPrimaryContainer, modifier = Modifier.width(200.dp)){}
     }
 }@Preview(showBackground = true)
 @Composable

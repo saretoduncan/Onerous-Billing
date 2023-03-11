@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.saorient.onerous_billing.ui.composables.ForgotPasswordScreen
 import com.saorient.onerous_billing.ui.composables.LoginScreen
+import com.saorient.onerous_billing.ui.composables.OtpComposableScreen
 import com.saorient.onerous_billing.ui.composables.SplashScreen
 
 @Composable
@@ -21,6 +22,9 @@ fun Navigation() {
         }
         composable(route = Screen.ForgotPassword.route){
             ForgotPasswordScreen(navController = navController)
+        }
+        composable(route = Screen.EnterOtpScreen.route){
+            OtpComposableScreen(navController = navController)
         }
 
     }

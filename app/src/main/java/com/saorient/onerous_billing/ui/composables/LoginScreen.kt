@@ -78,7 +78,7 @@ fun LoginScreen(modifier:Modifier= Modifier, navController: NavController) {
                         .width(280.dp)
                         .align(alignment = Alignment.CenterHorizontally)
                     , textColor = MaterialTheme.colorScheme.onPrimaryContainer
-                )
+                ){}
                 Spacer(modifier = Modifier.height(10.dp))
                 AuthDivider(modifier= Modifier
                     .width(280.dp)

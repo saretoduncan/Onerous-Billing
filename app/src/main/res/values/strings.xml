@@ -2,4 +2,5 @@
     <string name="app_name">Onerous_Billing</string>
     <string name="google_icon">google icon</string>
     <string name="go_back">go back</string>
+    <string name="Reset_password">Reset Password</string>
 </resources>
