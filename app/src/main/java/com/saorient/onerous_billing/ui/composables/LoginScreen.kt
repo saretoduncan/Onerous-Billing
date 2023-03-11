@@ -61,6 +61,10 @@ fun LoginScreen(modifier:Modifier= Modifier) {
                     .align(alignment = Alignment.CenterHorizontally)
                     .width(280.dp))
                 Spacer(modifier = Modifier.height(10.dp))
+                Box(modifier=Modifier.width(280.dp).align(alignment =Alignment.CenterHorizontally)) {
+                    Text(text = "forgot password?", color= MaterialTheme.colorScheme.onBackground, modifier= Modifier.align(alignment =Alignment.CenterEnd))
+                }
+                Spacer(modifier = Modifier.height(10.dp))
                 SimpleButton(colors =ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primaryContainer),
                     buttonText = "Login",
                     shape = 5,
