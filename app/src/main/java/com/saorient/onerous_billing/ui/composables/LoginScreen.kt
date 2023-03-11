@@ -1,9 +1,7 @@
 package com.saorient.onerous_billing.ui.composables
 
 import android.graphics.Color
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -16,10 +14,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.saorient.onerous_billing.R
+import com.saorient.onerous_billing.ui.AuthDivider
 import com.saorient.onerous_billing.ui.PasswordTextEdit
 import com.saorient.onerous_billing.ui.SimpleButton
 import com.saorient.onerous_billing.ui.TextEdit
 import com.saorient.onerous_billing.ui.theme.Onerous_BillingTheme
+import kotlinx.coroutines.runBlocking
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 
@@ -29,8 +29,11 @@ fun LoginScreen(modifier:Modifier= Modifier) {
         .background(
             MaterialTheme.colorScheme.background
         )
-        .fillMaxSize()){
-        Column(modifier=modifier.fillMaxWidth()) {
+        .fillMaxSize()
+        .padding(horizontal = 20.dp)){
+        Column(modifier= modifier
+            .fillMaxWidth()
+            .verticalScroll(rememberScrollState(), true)) {
             Spacer(modifier = Modifier.height(50.dp))
             Image(painter = painterResource(id = loginIllustation()), contentDescription ="app logo",
                 modifier= Modifier
@@ -46,19 +49,26 @@ fun LoginScreen(modifier:Modifier= Modifier) {
 
             )
             Spacer(modifier = Modifier.height(10.dp))
+
             TextEdit(label = "Email", modifier = Modifier
                 .align(alignment = Alignment.CenterHorizontally)
-                .background(MaterialTheme.colorScheme.background))
+                .background(MaterialTheme.colorScheme.background)
+                .width(280.dp))
             Spacer(modifier = Modifier.height(10.dp))
-            PasswordTextEdit(modifier= Modifier.align(alignment = Alignment.CenterHorizontally))
+            PasswordTextEdit(modifier= Modifier
+                .align(alignment = Alignment.CenterHorizontally)
+                .width(280.dp))
             Spacer(modifier = Modifier.height(10.dp))
             SimpleButton(colors =ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primaryContainer),
             buttonText = "Login",
                 shape = 5,
                 modifier = Modifier
+                    .width(280.dp)
                     .align(alignment = Alignment.CenterHorizontally)
-                    .width(200.dp), textColor = MaterialTheme.colorScheme.onPrimaryContainer)
-
+                    , textColor = MaterialTheme.colorScheme.onPrimaryContainer
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            AuthDivider(modifier= Modifier.width(280.dp).align(alignment = Alignment.CenterHorizontally))
         }
 
 

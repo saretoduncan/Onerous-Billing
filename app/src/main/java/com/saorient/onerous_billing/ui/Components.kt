@@ -2,9 +2,7 @@ package com.saorient.onerous_billing.ui
 
 import android.graphics.Color
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.BoxScopeInstance.align
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScopeInstance.align
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -18,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -99,12 +98,25 @@ fun ElevatedButton(buttonText:String="",
 
 @Composable
 fun AuthDivider(modifier: Modifier=Modifier) {
-    Row(modifier= modifier) {
-        Divider(color=MaterialTheme.colorScheme.onBackground, thickness = 2.dp)
-        Text(text = "Or")
-        Divider(color=MaterialTheme.colorScheme.onBackground, thickness = 2.dp)
+    Row(horizontalArrangement = Arrangement.spacedBy(2.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier) {
+        Box(
+            modifier
+                .height(1.dp)
+                .weight(1f)
+                .background(MaterialTheme.colorScheme.onBackground)
+        )
+        Text(text = "or", color=MaterialTheme.colorScheme.onBackground, style = androidx.compose.ui.text.TextStyle(fontWeight = FontWeight.Bold))
+        Box(
+            modifier
+                .height(1.dp)
+                .weight(1f)
+                .background(MaterialTheme.colorScheme.onBackground)
+        )
+        }
     }
-}
+
 @Preview(showBackground = true)
 @Composable
 fun TextEditPreview() {
@@ -130,7 +142,7 @@ fun SimpleButtonPreview() {
         SimpleButton(buttonText = "login", shape = 10,
             colors=ButtonDefaults
                 .buttonColors(MaterialTheme.colorScheme.primaryContainer),
-            textColor = MaterialTheme.colorScheme.onPrimaryContainer)
+            textColor = MaterialTheme.colorScheme.onPrimaryContainer, modifier = Modifier.width(200.dp))
     }
 }@Preview(showBackground = true)
 @Composable
@@ -147,8 +159,9 @@ fun ElevateButtonPreview() {
 @Composable
 fun AuthDividerPreview() {
     Onerous_BillingTheme {
-        AuthDivider(modifier=Modifier
+        AuthDivider(modifier= Modifier
             .background(MaterialTheme.colorScheme.background)
+
 
             )
     }
