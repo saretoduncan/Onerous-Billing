@@ -24,7 +24,7 @@ fun Navigation() {
             OtpComposableScreen(navController = navController)
         }
         composable(route = Screen.SetNewPasswordScreen.route){
-            SetNewPasswordScreen()
+            SetNewPasswordScreen(navController= navController)
         }
 
     }

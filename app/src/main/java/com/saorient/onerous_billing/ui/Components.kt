@@ -59,7 +59,7 @@ fun TextEdit(modifier:Modifier= Modifier,
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun PasswordTextEdit(modifier: Modifier= Modifier) {
+fun PasswordTextEdit(modifier: Modifier= Modifier, label:String="password") {
     val keyboardController= LocalSoftwareKeyboardController.current
     var password by rememberSaveable { mutableStateOf("") }
     var passwordVisible by rememberSaveable{ mutableStateOf(false) }
@@ -67,7 +67,7 @@ fun PasswordTextEdit(modifier: Modifier= Modifier) {
         onValueChange ={
         password=it
     },
-        label = { Text(text = "password")},
+        label = { Text(label)},
         keyboardOptions= KeyboardOptions.Default.copy(
             imeAction = ImeAction.Done
         ),
