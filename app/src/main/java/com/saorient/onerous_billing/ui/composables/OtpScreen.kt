@@ -45,7 +45,8 @@ fun OtpComposableScreen(modifier:Modifier= Modifier, navController: NavControlle
                 )
                 Spacer(modifier =Modifier.height(100.dp))
 
-                    TextEdit(modifier= Modifier.width(280.dp)
+                    TextEdit(modifier= Modifier
+                        .width(280.dp)
                         .background(MaterialTheme.colorScheme.background)
                         .align(alignment = Alignment.CenterHorizontally),
                         label = "OTP",
@@ -53,15 +54,18 @@ fun OtpComposableScreen(modifier:Modifier= Modifier, navController: NavControlle
 
 
                 Spacer(modifier=Modifier.height(10.dp))
-                SimpleButton(buttonText ="Resend OTP" ,colors = ButtonDefaults.buttonColors(
+                SimpleButton(buttonText ="Verify" ,colors = ButtonDefaults.buttonColors(
                     MaterialTheme.colorScheme.primaryContainer),
                     textColor = MaterialTheme.colorScheme.onPrimaryContainer,
                     shape = 5,
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
                         .width(280.dp)){
-
+                    navController.navigate(Screen.SetNewPasswordScreen.route)
                 }
+                Spacer(modifier=Modifier.height(10.dp))
+                Text(text = "Resend OTP", color = MaterialTheme.colorScheme.onBackground,
+                    modifier=Modifier.align(alignment = Alignment.CenterHorizontally))
             }
         }
     )
